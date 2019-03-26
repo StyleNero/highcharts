@@ -97,6 +97,9 @@ QUnit.assert.close = function (number, expected, error, message) {
 QUnit.module('Highcharts', {
     beforeEach: function () {
 
+        // @debug
+        // console.log(arguments[0].test.testName);
+
         // Reset container size that some tests may have modified
         var containerStyle = document.getElementById('container').style;
         containerStyle.width = 'auto';
