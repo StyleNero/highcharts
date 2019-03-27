@@ -713,16 +713,6 @@ H.extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */{
         },
 
         /**
-         * _Requires Accessibility module_
-         *
-         * Description of the axis to screen reader users.
-         *
-         * @type      {string}
-         * @since     5.0.0
-         * @apioption xAxis.description
-         */
-
-        /**
          * Whether to force the axis to end on a tick. Use this option with
          * the `maxPadding` option to control the axis end.
          *
@@ -1630,11 +1620,9 @@ H.extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */{
          *         When clicking the legend to hide series, one axis preserves
          *         line and title, the other doesn't
          *
-         * @type      {boolean}
-         * @default   true
          * @since     1.1
-         * @apioption xAxis.showEmpty
          */
+        showEmpty: true,
 
         /**
          * Whether to show the first tick label.
@@ -3300,11 +3288,6 @@ H.extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */{
          */
         axis.min = null;
 
-        var tooltipCrosshairs = (
-            chart.options &&
-            chart.options.tooltip &&
-            chart.options.tooltip.crosshairs
-        );
         /**
          * The processed crosshair options.
          *
@@ -3313,7 +3296,7 @@ H.extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */{
          */
         axis.crosshair = pick(
             options.crosshair,
-            splat(tooltipCrosshairs)[isXAxis ? 0 : 1],
+            splat(chart.options.tooltip.crosshairs)[isXAxis ? 0 : 1],
             false
         );
 

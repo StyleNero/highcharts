@@ -828,9 +828,11 @@ H.Tooltip.prototype = {
         // shared tooltip, array is sent over
         if (shared && !(point.series && point.series.noSharedTooltip)) {
             // Set inactive state for all points
-            activeSeries = point.map(function (item) {
-                return item.series;
-            });
+            if (tooltip.split) {
+                activeSeries = [chart.hoverSeries];
+            } else {
+                activeSeries = chart.pointer.getActiveSeries(point);
+            }
             chart.series.forEach(function (inactiveSeries) {
                 if (
                     inactiveSeries.options.inactiveOtherPoints ||
@@ -924,6 +926,8 @@ H.Tooltip.prototype = {
 
             this.isHidden = false;
         }
+
+        H.fireEvent(this, 'refresh');
     },
 
     /**
